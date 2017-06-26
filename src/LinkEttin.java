@@ -85,7 +85,7 @@ public class LinkEttin {
 
 		try {
 			// Método para levantar selenium
-			System.setProperty("webdriver.gecko.driver", "C:/gecko/g.exe");
+			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/driver/geckodriver.exe");
 			driver = new FirefoxDriver();
 			capabilities = DesiredCapabilities.htmlUnit();
 			capabilities.setBrowserName("Firefox");
