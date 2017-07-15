@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -137,49 +139,56 @@ public class LinkEttin {
 	}
 	
 	public static void login(){
-		String username="";
-		String pass="";
-		//id=login-email
-		String text = doc.body().text();
-		String title = doc.title();
-		//System.out.println(text);
-		//driver.manage().getCookies();
-		//driver.findElement(By.id(str1));
-		//driver.findElement(By.id(str1)).sendKeys(str2);
-
-
-			// GET CONFIG -------
-			// Open the file	
-			FileInputStream fstream;
-			try {
-				fstream = new FileInputStream(System.getProperty("user.dir")+"/auth.conf");
-			
-			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-			String strLine;
-
-			//Read File Line By Line
-			while ((strLine = br.readLine()) != null)   {
-				if(strLine.startsWith("[Mail]:")){
-					username=strLine.substring(7);
-				}
-				if(strLine.startsWith("[Pass]:")){
-					pass=strLine.substring(7);
-				}
-				  
-			}
-
-			//Close the input stream
-			br.close();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-			driver.findElement(By.id("login-email")).sendKeys(username);
-			driver.findElement(By.id("login-password")).sendKeys(pass);
-			driver.findElement(By.id("login-submit")).click();
-			username="";
-			pass="";
+            try {
+                System.out.println("[INFO]:you have 1 min to login.");
+                Thread.sleep(60000);
+                
+                /*String username="";
+                String pass="";
+                //id=login-email
+                String text = doc.body().text();
+                String title = doc.title();
+                //System.out.println(text);
+                //driver.manage().getCookies();
+                //driver.findElement(By.id(str1));
+                //driver.findElement(By.id(str1)).sendKeys(str2);
+                
+                
+                // GET CONFIG -------
+                // Open the file
+                FileInputStream fstream;
+                try {
+                fstream = new FileInputStream(System.getProperty("user.dir")+"/auth.conf");
+                
+                BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+                String strLine;
+                
+                //Read File Line By Line
+                while ((strLine = br.readLine()) != null)   {
+                if(strLine.startsWith("[Mail]:")){
+                username=strLine.substring(7);
+                }
+                if(strLine.startsWith("[Pass]:")){
+                pass=strLine.substring(7);
+                }
+                
+                }
+                
+                //Close the input stream
+                br.close();
+                } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                }
+                
+                driver.findElement(By.id("login-email")).sendKeys(username);
+                driver.findElement(By.id("login-password")).sendKeys(pass);
+                driver.findElement(By.id("login-submit")).click();
+                username="";
+                pass="";*/
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LinkEttin.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
 	}
 	
@@ -299,6 +308,8 @@ public class LinkEttin {
 		*/
                 boolean humanmode=false;
                 Scanner scan = new Scanner(System.in);
+                Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
+                Runtime.getRuntime().exec("taskkill /F /IM g.exe");
                 System.out.println(" /$$       /$$           /$$       /$$$$$$$$ /$$     /$$     /$$          \n" +
                                     "| $$      |__/          | $$      | $$_____/| $$    | $$    |__/          \n" +
                                     "| $$       /$$ /$$$$$$$ | $$   /$$| $$     /$$$$$$ /$$$$$$   /$$ /$$$$$$$ \n" +
